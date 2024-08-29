@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Megazone Media</title>
+    <!-- Link to the favicon -->
+    <!-- Link to the favicon -->
+    <link rel="icon" type="image/png" href="~/Content/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" href="~/Content/file.png" sizes="64x64" />
+    <link rel="icon" type="image/png" href="~/Content/file.png" sizes="128x128" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/tabstyle.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="icon" href="~/favicon.ico" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Main.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+
+
+    <style>
+
+        .navbars {
+            background: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            font-size: 16px;
+        }
+
+        .navNames {
+            color: black;
+            font-size: 18px;
+        }
+
+        .navbar-nav {
+            display: flex
+        }
+
+        footer {
+            position: sticky;
+            top: 100%;
+            bottom: 0;
+            margin-top: auto;
+            background-color: #111;
+            height: auto;
+            width: 100%;
+            font-family: "Open Sans";
+            padding-top: 40px;
+            color: white;
+        }
+
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            margin-left: 1600px;
+        }
+
+            .footer-content h3 {
+                font-size: 1.8rem;
+                font-weight: 400;
+                text-transform: capitalize;
+                line-height: 3rem;
+            }
+
+            .footer-content p {
+                max-width: 500px;
+                margin: 10px auto;
+                line-height: 20px;
+                font-size: 14px;
+                color: white;
+            }
+
+        .socials {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0 3rem 0;
+        }
+
+            .socials li {
+                margin: 0 10px;
+                font-size: 20px;
+            }
+
+            .socials a {
+                text-decoration: none;
+                color: white;
+                font-size: 20px;
+            }
+
+                .socials a i {
+                    font-size: 1.1rem;
+                    transition: color .4s ease;
+                    font-size: 16px;
+                }
+
+                .socials a:hover i {
+                    color: indianred;
+                }
+
+        .footer-bottom {
+            background-color: #000;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+            .footer-bottom p {
+                font-size: 14px;
+                word-spacing: 2px;
+                text-transform: capitalize;
+                color: white;
+            }
+
+            .footer-bottom span {
+                text-transform: uppercase;
+                opacity: .4;
+                font-weight: 200;
+            }
+
+        .heading {
+            color: white;
+        }
+
+        /* Ensure the dropdown menu is hidden by default */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%; /* Position the dropdown menu below the toggle */
+            left: 45px;
+            z-index: 1000;
+            background-color: white; /* Optional: Set the background color */
+            min-width: 200px; /* Optional: Set a minimum width */
+            padding: 5px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Show the dropdown menu when hovering over the dropdown */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Style the dropdown toggle when hovered */
+        .dropdown:hover .dropdown-toggle {
+            background-color: #ffffff !important;
+            color: black !important;
+        }
+
+
+        .footer-explore {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-direction: column;
+            /*text-align: left;*/
+            margin-right: 1700px;
+            margin-top: -130px;
+        }
+
+            .footer-explore a {
+                text-decoration: none;
+            }
+
+            .footer-explore p {
+                color: white;
+            }
+
+            .footer-explore a:hover {
+                color: indianred;
+            }
+    </style>
+
+</head>
+<body style="min-height:120vh">
+
+    <nav class="navbars">
+        @{
+            var department_Service = new MZM.Models.Department_Service();
+
+            var cart_Service = new MZM.Models.Cart_Service();
+            double total = 0;
+        }
+        <h1 class="heading">Megazone</h1>
+        <ul class="nav navbar-nav" id="nav_menu_data">
+
+
+            @using Microsoft.AspNet.Identity
+            @if (!Request.IsAuthenticated)
+            {
+                <img src="~/Content/Black MZM Logo.png" alt="" style="width: 100px; height: 100px; margin-left: 400px; margin-top: -70px;">
+                <li>  <a class="navNames" href="@Url.Action("Index","Home")" style=" margin-left: 100px; margin-top:-40px;">Home</a> </li>
+                <li>  <a class="navNames" href="@Url.Action("About", "Home")" style="margin-top: -40px;">About</a> </li>
+                <li>  <a class="navNames" href="@Url.Action("Services", "Home")" style="margin-top: -40px;">Services</a> </li>
+                <li>  <a class="navNames" href="@Url.Action("radio", "Home")" style="margin-top: -40px;">Megazone radio</a> </li>
+
+                <li>  <a class="navNames" href="@Url.Action("Index", "PageRetrieval")" style="margin-top: -40px;">News</a> </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" style="color: black; margin-top: -40px; font-size: 18px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Megazone Bollywood 104.8FM <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu mega">
+                        <li class="dropdown-header" @*style="margin-top: -20px;"*@></li>
+                        <li>@Html.ActionLink("Shows", "Show", "Home", null, "fa fa-list")</li>
+
+                        <li class="dropdown-header"></li>
+                        <li>@Html.ActionLink("The Latest @MZB 104.8FM", "Latest", "Home", null, "fa fa-plus")</li>
+                    </ul>
+                </li>
+
+                <li>  <a class="navNames" href="@Url.Action("Index", "Cast")" style="margin-top: -40px;">Podcast</a> </li>
+                <li>  <a class="navNames" href="@Url.Action("Index", "eMega")" style="margin-top: -40px;">e-Megazoner</a> </li>
+                <li>  <a class="navNames" href="@Url.Action("Index", "Contact")" style="margin-top: -40px;">Contact</a> </li>
+            }
+
+            @if (User.IsInRole("Admin"))
+            {
+                <li>  <a class="navNames" href="@Url.Action("Requests", "Home")" style="margin-left: 230px;"><b><strong>ALL REQUESTS</strong></b></a> </li>
+                <li>  <a class="navNames" href="@Url.Action("salesmenreg", "Account")"><b><strong>NEW ASSISSTANT</strong></b></a> </li>
+            }
+
+            @if (User.IsInRole("SalesMen"))
+            {
+                <li>  <a class="navNames" href="@Url.Action("Index","Departments")" style="margin-left: 200px; margin-top: -50px;"><b><strong>ALL CATEGORIES</strong></b></a> </li>
+                <li>  <a class="navNames" href="@Url.Action("Create", "Departments")" style="margin-top: -50px;"><b><strong>NEW CATEGORY</strong></b></a> </li>
+                <li>  <a class="navNames" href="@Url.Action("Index", "Items")" style="margin-top: -50px;"><b><strong>ALL NEWS</strong></b></a> </li>
+                <li>  <a class="navNames" href="@Url.Action("Create", "Items")" style="margin-top: -50px;"><b><strong>NEW NEWS</strong></b></a> </li>
+
+
+            }
+
+            @if (User.IsInRole("Driver"))
+            {
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:white" aria-expanded="false"><span class="fa fa-wrench"></span> Deliveries <span class="caret"></span></a>
+                    <ul class="dropdown-menu mega">
+                        <li class="dropdown-header"></li>
+                        <li>@Html.ActionLink("Shipments", "Index", "Shipments", null, "fa fa-list")</li>
+                    </ul>
+                </li>
+            }
+
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </nav>
+
+
+    <div class="body-contents">
+        @RenderBody()
+    </div>
+    @*<br />*@
+
+    <footer>
+        <div class="footer-content">
+            <p><b><strong>FOLLOW US</strong></></b></p>
+            <ul class="socials">
+                <li><a href="https://www.facebook.com/megazonemedia/"><i class="bi bi-facebook"></i></a></li>
+                <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UCGfVJJLEm2ACJwfgkip4f0A"><i class="bi bi-youtube"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/megazone-media-1157a61aa?originalSubdomain=za"><i class="bi bi-linkedin"></i></a></li>
+                <li><a href="https://api.whatsapp.com/send/?phone=27835122264&text&type=phone_number&app_absent=0"><i class="bi bi-whatsapp"></i></a></li>
+
+            </ul>
+        </div>
+
+        <div class="footer-explore">
+            <br />
+            <p><b><strong>EXPLORE</strong></></b></p>
+            <a href="/home/index">Home</a>
+            <a href="/home/about">About</a>
+            <a href="/home/radio">Radio</a>
+            <a href="/home/services">Services</a>
+            <a href="/contact/index">Contact</a>
+        </div>
+
+        <hr />
+
+        <div class="footer-bottom">
+            <p>&copy; @DateTime.Now.Year - Megazone Media All Rights Reserved</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

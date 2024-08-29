@@ -1,0 +1,173 @@
+﻿@model MZM.Models.Contact
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<br />
+<br />
+<br />
+
+<style>
+    .form-group {
+        margin-left: 200px;
+        color: black;
+    }
+
+        .form-group h1 {
+            margin-left: 100px;
+        }
+
+    .location {
+        margin-left: 800px;
+        margin-top: -300px;
+    }
+
+        .location p {
+            color: black;
+        }
+
+    .call {
+        margin-left: 800px;
+        margin-top: -0px;
+    }
+
+        .call p {
+            color: black;
+        }
+
+    .mail {
+        margin-left: 800px;
+    }
+
+        .mail p {
+            color: black;
+        }
+
+    .clock {
+        margin-left: 800px;
+    }
+
+        .clock p {
+            color: black;
+        }
+
+    #map {
+        width: 200%;
+    }
+
+    .form-horizontal {
+        color: black;
+    }
+
+    .position-center {
+        color: black;
+    }
+</style>
+
+<img class="mySlides" src="~/Content/ContactUsGIF.gif" style="width:1900px; height:750px;">
+
+<br />
+<br />
+<br />
+<div class="contacts">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.Message
+            </div>
+        }
+
+        <div class="form-group">
+            <h1>Let's work together</h1>
+        </div>
+
+        <br /><br />
+        <div class="form-group">
+            <label for="customName" style="color:black;">Name</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", style = "width: 20%;height:10%;margin-left:5%; margin-top:-2%" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <br /><br />
+        <div class="form-group">
+            <label for="customEmail" style="color:black;">Email</label>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", style = "width: 20%;height:10%;margin-left:5%; margin-top:-1.8%" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <br /><br />
+        <div class="form-group">
+            <label for="customMessage" style="color:black;">Message</label>
+            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", style = "width: 20%;height:25%;margin-left:5%; margin-top:-1.8%" })
+            @Html.ValidationMessageFor(model => model.Message)
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-primary" style="margin-left:15%">Send</button>
+
+
+    }
+</div>
+
+
+
+<br />
+
+<div class="location">
+
+    <p>
+
+        @*<a href="https://www.google.com/maps/dir//Suite+1,+1st+Floor,+West,+Gateway,+Palm+Blvd,+Umhlanga+Ridge,+Durban,+4319-29.7239672,30.9860181,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x1ef7059163a08f53:0xd3fcd905e04616b0!2m2!1d31.0684195!2d-29.7239927?entry=ttu">
+                <span class="glyphicon glyphicon-map-marker"></span>
+            </a>
+            &nbsp;*@ Suite 1, 1st Floor, West Palm Boulevard, Gateway 4319 Umhlanga Rocks
+    </p>
+</div>
+
+<br />
+<div class="call">
+    <p>@*<span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;*@(031) 001-9915</p>
+
+</div>
+
+<br />
+<div class="mail">
+    <p>
+        @*<span class="glyphicon glyphicon-envelope"></span>&nbsp;*@ admin@megazone.fm
+
+    </p>
+</div>
+
+<br />
+<div class="clock">
+    <p>
+
+        @*<span class="glyphicon glyphicon-clock"></span>&nbsp;*@ Monday - Friday: 08:00 - 16:30
+
+    </p>
+
+</div>
+
+<br />
+<br />
+
+<div class="map" style="margin-left:0px; margin-top:170px; width:100%;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.8538429303217!2d31.06584457554154!3d-29.72399267508666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7059163a08f53%3A0xd3fcd905e04616b0!2sMEGAZONE%20MEDIA!5e0!3m2!1sen!2sza!4v1720532119408!5m2!1sen!2sza" width="1900" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+@*<br />*@
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

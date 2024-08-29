@@ -1,0 +1,49 @@
+﻿@*<style>
+    .containerr {
+        margin-left:auto;
+       /* margin-right: -300px;*/
+        margin-top: -270px; /* Shift upwards by 50px */
+        width: 70%;
+        height: 500%; /* Full viewport height */
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .scrollable-containerr {
+        width: 60%;
+        max-height: 1000px; /* Set a maximum height for the container */
+        overflow-y: auto; /* Enable vertical scrolling */
+        border: 1px solid #ddd; /* Optional: border for better visibility */
+        /*  padding: 10px;*/
+        box-sizing: border-box;
+    }
+    .horizontal-list {
+        display: flex;
+        flex-direction: row; /* Display list items horizontally */
+        list-style-type: none; /* Remove default list styling */
+        padding: 0; /* Remove default padding */
+        margin: 0; /* Remove default margin */
+    }
+
+        .horizontal-list li {
+            margin-right: 20px; /* Optional: add some space between items */
+        }
+</style>
+
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<div class="containerr">
+    <div class="scrollable-containerr">
+        <ul class="dl-horizontal-list">*@
+<br /><br /><br /><br /><br /><br /><br /><br />
+            @if (ViewBag.PageContent != null)
+            {
+                @Html.Raw(ViewBag.PageContent)
+            }
+            else
+            {
+                @*<p>Error retrieving page content.</p>*@
+            }
+        @*</ul>
+    </div>
+</div>*@

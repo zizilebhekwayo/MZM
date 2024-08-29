@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Thanks";
+}
+<style>
+    .container {
+        margin-left: 900px;
+        margin-top: 10px;
+        width: 80%;
+        height: 100%; 
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .scrollable-container {
+        width: 40%;
+        max-height: 800px; 
+        overflow-y: auto; 
+        border: 1px solid #ddd; 
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    #weather-container {
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.5s ease-in-out;
+    }
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="container" id="weather-container">
+    <div class="scrollable-container">
+        <ul>
+            <section class="blogs" id="blogs">
+                <a class="weatherwidget-io" href="https://forecast7.com/en/n29d7431d07/umhlanga/" data-label_1="UMHLANGA" data-label_2="WEATHER" data-icons="Climacons Animated" data-theme="pure">UMHLANGA WEATHER</a>
+                <script>
+                    !function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = 'https://weatherwidget.io/js/widget.min.js';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, 'script', 'weatherwidget-io-js');
+
+                    // Custom script to change background based on weather
+                    async function setWeatherBackground() {
+                        const apiKey = 'b24a51f9fb4315307e3fedfcb09d6fac'; // Replace with your API key
+                        const city = 'Umhlanga';
+                        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+                        const response = await fetch(url);
+                        const weatherData = await response.json();
+                        const weatherCondition = weatherData.weather[0].main.toLowerCase();
+
+                        const container = document.getElementById('weather-container');
+
+                        if (weatherCondition.includes('rain')) {
+                            container.style.backgroundImage = 'url(https://path/to/your/rainy-background.jpg)';
+                        } else if (weatherCondition.includes('clear')) {
+                            container.style.backgroundImage = 'url(https://path/to/your/sunny-background.jpg)';
+                        } else if (weatherCondition.includes('clouds')) {
+                            container.style.backgroundImage = 'url(https://path/to/your/cloudy-background.jpg)';
+                        } // Add more conditions as needed
+                    }
+
+                    setWeatherBackground();
+                </script>
+            </section>
+        </ul>
+    </div>
+</div>
+
+
+
+

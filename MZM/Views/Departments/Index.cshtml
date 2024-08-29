@@ -1,0 +1,106 @@
+﻿@model IEnumerable<MZM.Models.Department>
+@{
+    ViewBag.Title = "Categories";
+
+
+}
+
+<style>
+    .align-left {
+        margin-left: 100px;
+    }
+
+    .align-right {
+        margin-right: 200px;
+    }
+
+    .table-header-row {
+        margin-right: 500px;
+    }
+
+    .kt-portlet kt-portlet--mobile {
+        font-size: 12px;
+    }
+</style>
+<h2><b>Departments </b></h2>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="align-left">
+        <p>
+            <a href="@Url.Action("Create", "Departments")" rel="tooltip" title="Add" class="btn btn-default btn-simple btn-xs">Add New<i class="fa fa-plus"></i></a>
+
+        </p>
+    </div>
+}
+<div class="align-right">
+    <br />
+
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+
+            </div>
+            <table class="table table-hover table-striped" id="my_list">
+                <thead>
+                    <tr class="table-header-row">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Department_ID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Department_Name)
+                        </th>
+                     
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department_ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department_Name)
+                            </td>
+                           
+                            <td>
+                                <a href="@Url.Action("Details","Departments", new { id=item.Department_ID })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs">Details<i class="fa fa-eye"></i></a>
+                                <a href="@Url.Action("Edit","Departments", new { id=item.Department_ID })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs">Edit<i class="fa fa-edit"></i></a>
+                                <a href="@Url.Action("Delete", "Departments", new { id = item.Department_ID })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">Delete<i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        $('#my_list').dataTable(
+            {
+                dom: 'Bfrtip',
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    ['10 rows', '25 rows', '50 rows', 'Show all']
+                ],
+                buttons: [
+                    'pageLength', 'pdf', 'print'
+                ]
+            }
+        );
+        $('#my_list')
+            .removeClass('display')
+            .addClass('table table-striped table-hover');</script>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

@@ -1,0 +1,201 @@
+﻿@model IEnumerable<MZM.Models.Item>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.Department != null)
+    {
+        ViewBag.Title = ViewBag.Department.ToString();
+    }
+}
+
+@{
+    var department_Service = new MZM.Models.Department_Service();
+
+    var cart_Service = new MZM.Models.Cart_Service();
+    double total = 0;
+}
+
+
+
+<head>
+    <style>
+        .container_0 {
+            width: 108%;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            position: relative;
+            background-color: ghostwhite;
+            width: 350px;
+            height: 450px;
+            color: black;
+            font-weight: 500;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px #0d3050;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+            .card img {
+                position: absolute;
+                width: 240px;
+                height: 170px;
+                margin-left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .card .card-data {
+                margin-top: 14rem;
+                padding: 10px;
+                overflow-y: hidden;
+            }
+
+            .card .card-description {
+                font-size: 14px;
+                opacity: 0;
+            }
+
+            .card .card-button {
+                padding: 10px 20px;
+                color: #E6E7E8;
+                margin-top: 15px;
+                text-decoration: none;
+                border-radius: 2px;
+                background-color: #fe1104;
+                font-weight: 1000;
+                opacity: 0;
+            }
+
+            .card:hover img {
+                transition: 0.5s linear;
+                transform: translate(-50%, -6.5rem) rotate(-20deg);
+                filter: drop-shadow(5px 5px 10px rgba(182, 174, 173, 0.4));
+            }
+
+            .card:hover .card-data {
+                transition: 1s;
+                margin-top: 9rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                align-items: flex-start;
+            }
+
+            .card:hover .card-description,
+            .card:hover .card-button {
+                opacity: 1;
+                text-align: left;
+            }
+
+        .Advert {
+            width: 100%;
+            height: 50vh;
+            background-image: url(../../Content/image/3681818-ps5-exclusives-playstation-5-games-1280x720.png);
+            margin-bottom: -500px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .sub-menu1 {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+            .sub-menu1 li {
+                list-style: none;
+                text-decoration: none;
+                display: inline-block;
+                margin-right: 50px;
+            }
+
+                .sub-menu1 li a {
+                    text-decoration: none;
+                    color: white;
+                    width: 200px;
+                    border: solid 1px black;
+                    border-radius: 5px;
+                    padding: 10px;
+                    background-color: black;
+                }
+
+                    .sub-menu1 li a:hover {
+                        text-decoration: none;
+                        color: black;
+                        border: solid 1px black;
+                        padding: 10px;
+                        background-color: ghostwhite;
+                        transition: ease-in-out 0.5s;
+                    }
+    </style>
+</head>
+
+
+
+<div class="container">
+    <div class="Advert"></div>
+
+    <hr />
+    <ul class="sub-menu1">
+        <li><a href="@Url.Action("Index","Shopping",new { id = 0})">All </a></li>
+        @foreach (var department in department_Service.GetDepartments().OrderBy(x => x.Department_Name))
+        {
+            <li><a href="@Url.Action("Index","Shopping",new { id = department.Department_ID })">@department.Department_Name</a></li>
+        }
+    </ul>
+
+    <hr />
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+
+
+            <div class="col-sm-3">
+                <div class="container_0">
+                    <div class="card">
+                        @if (item.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(inArray: item.Picture);
+                            var imgSrc = string.Format(format: "data:image/gif;base64,{0}", arg0: base64);
+                            <img src="@imgSrc" width="300" height="249" />
+                        }
+                        <br />
+                        <div class="card-data">
+                            <h3 class="card-title">@Html.DisplayFor(expression: modelItem => item.Name)</h3>
+
+                            <p>
+                                <a href="@Url.Action("Details","Items", new { id=item.ItemCode })" rel="tooltip" title="View" style="color:black;">
+                                </a>
+                            </p>
+                            <hr />
+                            <div>
+
+                                <p>@item.MyDate.ToString("dd MMMM yyyy, hh:mm tt")</p>
+                            </div>
+
+
+                            <br />
+                            <a href="@Url.Action("Details","Items", new { id=item.ItemCode })" rel="tooltip" title="View">
+                                <button class="my-button" style="border: none; border-radius: 12px; padding: 15px 15px; cursor: pointer; font-size: 12px; color:black; background-color:indianred;"><b>READ MORE...</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        }
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

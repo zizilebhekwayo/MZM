@@ -1,0 +1,129 @@
+﻿@model IEnumerable<MZM.Models.Contact>
+
+@{
+    var message = TempData["Approved"] ?? string.Empty;
+}
+<script>
+    var msg = '@message';
+    if (msg)
+        alert(msg);
+</script>
+
+<style>
+    .panel-heading {
+        margin-left: 250px;
+    }
+
+    .table {
+        margin-left: 250px;
+    }
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<section id="main-content">
+    <section class="wrapper">
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Customer Information</h1>
+                </div>
+                <br />
+                <div>
+                    <table class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Contacts</th>
+                                <th>Message</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td><i class="fa fa-user"></i> @item.Name</td>
+                                    <td><i class="fa fa-envelope"></i> @item.Email <br /><i class="fa fa-phone"></i> @item.Message</td>
+                                    @*<td>@item.Address <br /> @item.City <br /> @item.country <br /> @item.postalCode</td>
+                                        <td>@item.StockType <br /> @item.StockName <br /> @item.StockModel <hr /><b>Damage details</b><br /> @item.DamageLocation <br /> @item.DamageType<br />@item.ActualDamage</td>*@
+                                    <td>
+                                        @item.Status
+
+                                        @if (item.Message != null)
+                                        {
+                                            <span> @item.Message </span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (User.IsInRole("SalesMen"))
+                                        {
+                                            if (item.Status == "Pending Request")
+                                            {
+                                                <a href="/home/approve/@item.ContactId" class="btn btn-primary">Approve request</a>
+                                            }
+                                            if (item.Status == "Quotation Accepted")
+                                            {
+                                                <a href="/repairs/proccess/@item.ContactId" class="btn btn-primary">Proccess repair</a>
+                                            }
+                                            if (item.Status == "Repair has been started")
+                                            {
+                                                <a href="/repairs/finish/@item.ContactId" class="btn btn-primary">Repair done</a>
+                                            }
+                                        }
+                                        @if (User.IsInRole("Customer"))
+                                        {
+                                            if (item.Status == "Request Approved")
+                                            {
+                                                <a href="/repairs/accept/@item.ContactId" class="btn btn-success">Accept terms</a>
+                                            }
+                                            if (item.Status == "Repair Finished")
+                                            {
+                                                <a href="/repairs/pay/@item.ContactId" class="btn btn-success">Proceed for payment</a>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+

@@ -1,0 +1,149 @@
+﻿@model MZM.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <style>
+
+        .wrapper {
+            max-width: 700px;
+            width: 100%;
+            margin: 20% auto auto auto;
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+
+            .wrapper .title {
+                font-size: 35px;
+                font-weight: 600;
+                text-align: center;
+                line-height: 100px;
+                color: #fff;
+                user-select: none;
+                border-radius: 15px 15px 0 0;
+                background: linear-gradient(-135deg, #c850c0, #4158d0);
+            }
+
+
+        .content form .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0 12px 0;
+        }
+
+        form .user-details .input-box {
+            margin-bottom: 15px;
+            width: calc(100% / 2 - 20px);
+        }
+
+        form .input-box span.details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .user-details .input-box input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+            .user-details .input-box input:focus,
+            .user-details .input-box input:valid {
+                border-color: #9b59b6;
+            }
+
+        form .button {
+            height: 60px;
+            margin: 35px 0
+        }
+
+            form .button input {
+                height: 100%;
+                width: 100%;
+                border-radius: 5px;
+                border: none;
+                color: #fff;
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            }
+
+                form .button input:hover {
+                    /* transform: scale(0.99); */
+                    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+                }
+    </style>
+</head>
+
+<div class="wrapper">
+    <div class="title">Registration</div>
+    <div class="content">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <!-- Create Personal Info -->
+            <form action="#">
+                <div class="user-details">
+                    <!-- First Name -->
+                    <div class="input-box">
+                        <span class="details">First Name</span>
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <!-- Last Name -->
+                    <div class="input-box">
+                        <span class="details">Last Name</span>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <!-- Email -->
+                    <div class="input-box">
+                        <span class="details">Email Address</span>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Example@emailsample.com" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <!-- Contact Number -->
+                    <div class="input-box">
+                        <span class="details">Contact No</span>
+                        @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-control", @placeholder = "0123456789" })
+                        @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+                    </div>
+                    <!-- New Password -->
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "********" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <!-- Confirm New Password -->
+                    <div class="input-box">
+                        <span class="details">Confirm Password</span>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "********" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <!-- Submit Button -->
+                <div class="button">
+                    <input type="submit" value="Sign-Up" class="btn btn-transparent" />
+                </div>
+
+            </form>
+        }
+    </div>
+</div>

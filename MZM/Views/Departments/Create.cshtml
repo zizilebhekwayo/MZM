@@ -1,0 +1,86 @@
+﻿@model MZM.Models.Department
+@{
+    ViewBag.Title = "Add New Department";
+
+
+
+}
+
+<style>
+    .kt-portlet {
+        margin-left: 200px;
+        margin-top: 100px;
+    }
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Add New Category
+            </h3>
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="kt-portlet__body">
+
+
+            <div class="form-group row">
+                <div class="col-lg-5">
+                    <label>Category Name:</label>
+                    @Html.EditorFor(model => model.Department_Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Category Name" } })
+                    @Html.ValidationMessageFor(model => model.Department_Name, "", new { @class = "text-danger" })
+
+                </div>
+
+                @*<div class="col-lg-5">
+                        <label>Description:</label>
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                    </div>*@
+            </div>
+
+
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    }
+
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

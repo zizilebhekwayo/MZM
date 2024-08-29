@@ -1,0 +1,8 @@
+﻿@if (ViewBag.PageContent != null)
+{
+    @Html.Raw(ViewBag.PageContent)
+}
+else
+{
+    <p>Error retrieving page content.</p>
+}

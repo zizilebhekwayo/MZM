@@ -1,0 +1,169 @@
+﻿@model MZM.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <title>Megazone Media</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content=" " />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- //bootstrap-css -->
+    <!-- Custom CSS -->
+    <link href="~/Layout/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Layout/css/style-responsive.css" rel="stylesheet" />
+    <!-- font CSS -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" href="css/font.css" type="text/css" />
+    <link href="~/Layout/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <script src="~/Layout/js/jquery2.0.3.min.js"></script>
+
+    <style>
+
+        .wrapper {
+            max-width: 700px;
+            width: 100%;
+            margin: 20% auto auto auto;
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            margin-top: 100px;
+        }
+
+            .wrapper .title {
+                font-size: 35px;
+                font-weight: 600;
+                text-align: center;
+                line-height: 100px;
+                color: #fff;
+                user-select: none;
+                border-radius: 15px 15px 0 0;
+                background: linear-gradient(-135deg, #c850c0, #4158d0);
+            }
+
+
+        .content form .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0 12px 0;
+        }
+
+        form .user-details .input-box {
+            margin-bottom: 15px;
+            width: calc(100% / 2 - 20px);
+        }
+
+        form .input-box span.details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .user-details .input-box input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+            .user-details .input-box input:focus,
+            .user-details .input-box input:valid {
+                border-color: #9b59b6;
+            }
+
+        form .button {
+            height: 60px;
+            margin: 35px 0
+        }
+
+            form .button input {
+                height: 100%;
+                width: 100%;
+                border-radius: 5px;
+                border: none;
+                color: #fff;
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            }
+
+                form .button input:hover {
+                    /* transform: scale(0.99); */
+                    background: linear-gradient(-135deg, #c850c0, #4158d0);
+                }
+    </style>
+
+</head>
+<div class="wrapper">
+    <div class="title">Registration</div>
+    <div class="content">
+        @using (Html.BeginForm("SalesMenReg", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <!-- Create Personal Info -->
+            <form action="#">
+                <div class="user-details">
+
+                    <!--Name-->
+                    <div class="input-box">
+                        <span class="details">Name</span>
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Example@emailsample.com" })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!--Surname-->
+                    <div class="input-box">
+                        <span class="details">Surname</span>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Example@emailsample.com" })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Email -->
+                    <div class="input-box">
+                        <span class="details">Email Address</span>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Example@emailsample.com" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- New Password -->
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "********" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <!-- Confirm New Password -->
+                    <div class="input-box">
+                        <span class="details">Confirm Password</span>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "********" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <h4><input type="checkbox" />I agree to the Terms of Service and Privacy Policy</h4>
+                <br />
+                <!-- Submit Button -->
+                <div class="button">
+                    <input type="submit" value="Submit" class="btn btn-transparent" />
+                </div>
+
+                <p>Already Registered.<a href="/account/login">  Login</a></p>
+
+            </form>
+        }
+    </div>
+</div>
